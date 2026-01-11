@@ -3,10 +3,17 @@ import dotenv from "dotenv";
 import { startEnrichment } from "./services/fullEnrich.js";
 import { verificationResults } from "./store/results.js";
 import { classifyRole } from "./logic/classifyRole.js";
+import cors from "cors";
 
 dotenv.config();
 
 const app = express();
+
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 
 app.use(express.json());
 app.use(express.static("public")); // serves index.html
