@@ -18,6 +18,10 @@ app.use(
 app.use(express.json());
 app.use(express.static("public")); // serves index.html
 
+app.get("/", (req, res) => {
+  res.send("SignalRank backend is running");
+});
+
 // ---------- VERIFY ----------
 app.post("/verify", async (req, res) => {
   const { email } = req.body;
