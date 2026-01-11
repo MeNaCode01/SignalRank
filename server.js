@@ -4,6 +4,11 @@ import { startEnrichment } from "./services/fullEnrich.js";
 import { verificationResults } from "./store/results.js";
 import { classifyRole } from "./logic/classifyRole.js";
 import cors from "cors";
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 dotenv.config();
 
@@ -16,7 +21,8 @@ app.use(
 );
 
 app.use(express.json());
-app.use(express.static("public")); // serves index.html
+// app.use(express.static("public")); // serves index.html
+app.use(express.static(path.join(__dirname, "dist")));
 
 app.get("/", (req, res) => {
   res.send("SignalRank backend is running");
@@ -113,4 +119,8 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
   console.log(`Webhook URL: ${process.env.BASE_URL}/webhook`);
+});
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "dist", "index.html"));
 });
