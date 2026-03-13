@@ -1,6 +1,6 @@
 # SignalRank - Decision-Maker Verification Engine
 
-A real-time email verification system that identifies and classifies decision-makers using enrichment APIs. Built with Node.js and Express, SignalRank helps sales and GTM teams qualify leads by determining whether an email belongs to a decision-maker, influencer, or non-buyer.
+A real-time email verification system that identifies and classifies decision-makers using enrichment APIs. Built with Node.js and Express, SignalRank helps sales and marketing teams qualify leads by determining whether an email belongs to a decision-maker, influencer, or non-buyer.
 
 ## 🎯 Features
 
@@ -23,23 +23,27 @@ A real-time email verification system that identifies and classifies decision-ma
 ## 🚀 Installation
 
 1. Clone the repository:
+
 ```bash
 git clone https://github.com/MeNaCode01/SignalRank.git
 cd SignalRank
 ```
 
 2. Install dependencies:
+
 ```bash
 npm install
 ```
 
 3. Create a `.env` file in the root directory:
+
 ```env
 API_KEY=your_enrichment_api_key
 BASE_URL=https://your-ngrok-url.ngrok-free.dev/api/enrich
 ```
 
 4. Start the server:
+
 ```bash
 npm start
 ```
@@ -52,7 +56,7 @@ The server will run on `http://localhost:3000`
 ├── public/                 # Frontend files
 │   ├── index.html         # Main HTML page
 │   └── script.js          # Client-side logic
-├── services/              
+├── services/
 │   └── fullEnrich.js      # External API integration
 ├── logic/
 │   └── classifyRole.js    # Role classification logic
@@ -67,9 +71,11 @@ The server will run on `http://localhost:3000`
 ## 🔌 API Endpoints
 
 ### POST `/verify`
+
 Verify an email and start enrichment process.
 
 **Request:**
+
 ```json
 {
   "email": "user@company.com"
@@ -77,6 +83,7 @@ Verify an email and start enrichment process.
 ```
 
 **Response:**
+
 ```json
 {
   "status": "IN_PROGRESS",
@@ -85,12 +92,15 @@ Verify an email and start enrichment process.
 ```
 
 ### GET `/status`
+
 Check the verification status of an email.
 
 **Query Parameters:**
+
 - `email`: The email address to check
 
 **Response:**
+
 ```json
 {
   "status": "COMPLETED",
@@ -103,9 +113,11 @@ Check the verification status of an email.
 ```
 
 ### POST `/webhook/full-enrich`
+
 Webhook endpoint to receive enrichment results from external API.
 
 **Request Body:**
+
 ```json
 {
   "datas": [
@@ -135,7 +147,6 @@ The system classifies contacts based on job title and company size:
 
 - **Decision Maker** (High Confidence):
   - Founder, CEO, or CTO (at companies with < 200 employees)
-  
 - **Influencer** (Medium Confidence):
   - Head of department, Director, or Manager
   - Can influence purchasing decisions
@@ -146,11 +157,13 @@ The system classifies contacts based on job title and company size:
 ## 🛠️ Development
 
 ### Run in development mode with auto-reload:
+
 ```bash
 npm run dev
 ```
 
 ### Environment Variables
+
 - `API_KEY`: Your enrichment service API key
 - `BASE_URL`: The enrichment API endpoint URL
 
@@ -179,15 +192,18 @@ Result: ✅ John is a decision-maker at TechCorp
 ## 🚨 Troubleshooting
 
 ### Issue: 404 Not Found on `/verify`
+
 - Ensure the server is running: `npm start`
 - Check if port 3000 is available
 
 ### Issue: Verification stuck on "IN_PROGRESS"
+
 - Verify the enrichment API credentials in `.env`
 - Check if the webhook URL is publicly accessible (use ngrok)
 - Review server logs for API errors
 
 ### Issue: Empty enrichment results
+
 - Ensure the external API is returning valid data
 - Check webhook URL is correctly configured
 - Verify the response payload format matches expectations
@@ -206,7 +222,7 @@ ISC
 
 ## 👤 Author
 
-Manav Singh
+Manav Aggarwal
 
 ## 🤝 Contributing
 
